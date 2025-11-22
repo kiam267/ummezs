@@ -15,17 +15,18 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-import { signInFormSchema } from '@/schema/sign-in-schema';
+import { signUpFormSchema } from '@/schema/sign-up-schema';
 import { signInActions } from '@/actions/sign-in-actions';
 import { cn } from '@/lib/utils';
 import { Icons } from '@/constants/Icons';
 import Link from 'next/link';
 
-export function SignInForm() {
+export function SignUpForm() {
   // 1. Define your form.
-  const form = useForm<z.infer<typeof signInFormSchema>>({
-    resolver: zodResolver(signInFormSchema),
+  const form = useForm<z.infer<typeof signUpFormSchema>>({
+    resolver: zodResolver(signUpFormSchema),
     defaultValues: {
+      username: '',
       email: '',
       password: '',
     },
@@ -33,9 +34,8 @@ export function SignInForm() {
 
   // 2. Define a submit handler.
   function onSubmit(
-    values: z.infer<typeof signInFormSchema>
+    values: z.infer<typeof signUpFormSchema>
   ) {
-    console.log(values);
     signInActions({
       email: values.email,
       password: values.password,
@@ -50,13 +50,29 @@ export function SignInForm() {
       >
         <div className="flex flex-col items-center gap-2 text-center">
           <h1 className="text-2xl font-bold">
-            Sign In to your account
+            Sign Up to your account
           </h1>
           <p className="text-balance text-sm text-muted-foreground">
-            Enter your username and password below to login
+            Create an account using your username, email and
+            password.
           </p>
         </div>
         <div className="grid gap-6">
+          <div className="grid gap-2">
+            <FormField
+              control={form.control}
+              name="username"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Username</FormLabel>
+                  <FormControl>
+                    <Input placeholder="" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
           <div className="grid gap-2">
             <FormField
               control={form.control}
@@ -88,7 +104,7 @@ export function SignInForm() {
             />
           </div>
           <Button type="submit" className="font-semibold">
-            Sign In
+            Sign Up
           </Button>
 
           <div className="relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t after:border-border">
@@ -105,8 +121,8 @@ export function SignInForm() {
           </Button>
         </div>
         <div className="text-center text-sm">
-          Don&apos;t have an account?{' '}
-          <Link href="/sign-up">Sign Up</Link>
+          Already have an account?{' '}
+          <Link href="/sign-in">Sign In</Link>
         </div>
       </form>
     </Form>

@@ -14,6 +14,9 @@ importers:
       '@neondatabase/serverless':
         specifier: ^1.0.2
         version: 1.0.2
+      '@paper-design/shaders-react':
+        specifier: ^0.0.65
+        version: 0.0.65(@types/react@19.2.6)(react@19.2.0)
       '@radix-ui/react-label':
         specifier: ^2.1.8
         version: 2.1.8(@types/react-dom@19.2.3(@types/react@19.2.6))(@types/react@19.2.6)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
@@ -799,6 +802,18 @@ packages:
   '@nolyfill/is-core-module@1.0.39':
     resolution: {integrity: sha512-nn5ozdjYQpUCZlWGuxcJY/KpxkWQs4DcbMCmKojjyrYDEAGy4Ce19NN4v5MduafTwJlbKc99UA8YhSVqq9yPZA==}
     engines: {node: '>=12.4.0'}
+
+  '@paper-design/shaders-react@0.0.65':
+    resolution: {integrity: sha512-938W1mHANC2uArAglhG2a60qzajlWnqKPsw5E9HUnu1vJ2d5Kne0771fR8dRL1wS0VwwFyPbOdr7mmSrdmwe8g==}
+    peerDependencies:
+      '@types/react': ^18 || ^19
+      react: ^18 || ^19
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+
+  '@paper-design/shaders@0.0.65':
+    resolution: {integrity: sha512-BjOfV82yFn1jxoc6HlirHnTaafXIb7SVItGP1lK9hxmqA2f0bt6otoH/lCp9N9aLTxBivB6AwMfeZYvwOsAjTw==}
 
   '@peculiar/asn1-android@2.6.0':
     resolution: {integrity: sha512-cBRCKtYPF7vJGN76/yG8VbxRcHLPF3HnkoHhKOZeHpoVtbMYfY9ROKtH3DtYUY9m8uI1Mh47PRhHf2hSK3xcSQ==}
@@ -3221,6 +3236,15 @@ snapshots:
       fastq: 1.19.1
 
   '@nolyfill/is-core-module@1.0.39': {}
+
+  '@paper-design/shaders-react@0.0.65(@types/react@19.2.6)(react@19.2.0)':
+    dependencies:
+      '@paper-design/shaders': 0.0.65
+      react: 19.2.0
+    optionalDependencies:
+      '@types/react': 19.2.6
+
+  '@paper-design/shaders@0.0.65': {}
 
   '@peculiar/asn1-android@2.6.0':
     dependencies:

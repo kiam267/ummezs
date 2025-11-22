@@ -1,6 +1,10 @@
 import type { Metadata } from 'next';
 import { ToastContainer, toast } from 'react-toastify';
-import { Geist, Geist_Mono } from 'next/font/google';
+import {
+  Geist,
+  Geist_Mono,
+  Libre_Baskerville,
+} from 'next/font/google';
 import './globals.css';
 import { getConfig } from '@/lib/config';
 
@@ -8,7 +12,11 @@ const geistSans = Geist({
   variable: '--font-geist-sans',
   subsets: ['latin'],
 });
-
+const libreBaskerville = Libre_Baskerville({
+  variable: '--font-libre-baskerville',
+  subsets: ['latin'],
+  weight: ['400', '700'],
+});
 const geistMono = Geist_Mono({
   variable: '--font-geist-mono',
   subsets: ['latin'],
@@ -28,7 +36,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${libreBaskerville.className} antialiased dark`}
       >
         {children}
         <ToastContainer position={TOAST_POSITION} />
