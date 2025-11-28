@@ -7,7 +7,13 @@ export const auth = betterAuth({
   emailAndPassword: {
     enabled: true,
   },
-  socialProviders: {},
+  socialProviders: {
+    google: {
+      clientId: process.env.GOOGLE_CLIENT_ID as string,
+      clientSecret: process.env
+        .GOOGLE_CLIENT_SECRET as string,
+    },
+  },
 
   // Configure Better Auth with Drizzle adapter
   database: drizzleAdapter(db, {

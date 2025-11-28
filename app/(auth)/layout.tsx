@@ -1,16 +1,35 @@
-import {
-  HalftoneDots,
-  LiquidMetal,
-} from '@paper-design/shaders-react';
+'use client';
+
+import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+import { authClient } from '@/lib/auth-client';
+import { HalftoneDots } from '@paper-design/shaders-react';
+import Loading from '@/components/common/loading';
+
 export default function AuthLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const router = useRouter();
+  const { data: session, isPending } =
+    authClient.useSession();
+
+  useEffect(() => {
+    if (session?.user?.id) {
+      // Redirect client-side if logged in
+      router.push('/');
+    }
+  }, [session, router]);
+
+  if (isPending) {
+    return <Loading />;
+  }
+
   return (
-    <div className="grid min-h-svh lg:grid-cols-2">
+    <div className="grid min-h-screen lg:grid-cols-2">
       <>{children}</>
-      <div className="relative hidden bg-muted lg:block ">
+      <div className="relative hidden bg-muted lg:block">
         <HalftoneDots
           className="w-full h-full p-5 opacity-90"
           image="/albert-einstein.jpg"

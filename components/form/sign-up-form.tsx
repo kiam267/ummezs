@@ -20,6 +20,7 @@ import { signInActions } from '@/actions/sign-in-actions';
 import { cn } from '@/lib/utils';
 import { Icons } from '@/constants/Icons';
 import Link from 'next/link';
+import { signIn } from '@/lib/auth-client';
 
 export function SignUpForm() {
   // 1. Define your form.
@@ -115,6 +116,8 @@ export function SignUpForm() {
           <Button
             variant="outline"
             className="w-full bg-transparent"
+            type="button"
+            onClick={signIn}
           >
             <Icons.google className="size-5 fill-white" />
             Login with Google
@@ -122,7 +125,9 @@ export function SignUpForm() {
         </div>
         <div className="text-center text-sm">
           Already have an account?{' '}
-          <Link href="/sign-in">Sign In</Link>
+          <Link href="/sign-in" className="underline">
+            Sign In
+          </Link>
         </div>
       </form>
     </Form>
